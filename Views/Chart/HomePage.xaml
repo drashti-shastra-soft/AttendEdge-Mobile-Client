@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AttendEdgeMobileClient.Views.Chart.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+    xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit"
+    Title="HomePage">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout
+            Margin="0"
+            Padding="0"
+            VerticalOptions="FillAndExpand">
+
+            <!--  xmlns:l="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"  -->
+            <!--<lvc:CartesianChart
+            HeightRequest="300"
+            LegendPosition="Right"
+            Series="{Binding Series}"
+            ZoomMode="X" />-->
+
+
+            <sf:SfDataGrid
+                x:Name="sfGrdDatas"
+                AllowResizingColumns="True"
+                AutoGenerateColumnsMode="None"
+                ColumnWidthMode="Auto"
+                GridLinesVisibility="Both"
+                HeaderGridLinesVisibility="Both"
+                IsVisible="False">
+                <sf:SfDataGrid.DefaultStyle>
+                    <sf:DataGridStyle
+                        HeaderRowFontSize="16"
+                        RowFontFamily="Regular"
+                        RowFontSize="14" />
+                </sf:SfDataGrid.DefaultStyle>
+
+                <sf:SfDataGrid.Columns>
+                    <sf:DataGridTextColumn HeaderText="ID" MappingName="Id" />
+
+                    <sf:DataGridTextColumn
+                        CellTextAlignment="Justify"
+                        HeaderText="Name"
+                        MappingName="Name" />
+
+                    <sf:DataGridTextColumn HeaderText="Department" MappingName="Department" />
+
+                    <sf:DataGridNumericColumn
+                        Format="D"
+                        HeaderText="Salary"
+                        MappingName="Salary" />
+                    <sf:DataGridNumericColumn
+                        Format="D"
+                        HeaderText="Address"
+                        MappingName="Address" />
+                </sf:SfDataGrid.Columns>
+
+            </sf:SfDataGrid>
+
+
+            <FlexLayout
+                Margin="15"
+                AlignItems="Start"
+                Direction="Row"
+                FlexLayout.AlignSelf="Auto"
+                IsVisible="false"
+                JustifyContent="Start"
+                Wrap="Wrap">
+                <Border
+                    Margin="0,0,5,0"
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=10}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="12"
+                            Style="{StaticResource lblRegular}"
+                            Text="Zone"
+                            TextColor="White" />
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="10"
+                            Source="icon_down_arrow.png"
+                            WidthRequest="10" />
+                    </Grid>
+                </Border>
+
+                <Border
+                    Margin="0,0,5,0"
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=10}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="12"
+                            Style="{StaticResource lblRegular}"
+                            Text="Division"
+                            TextColor="White" />
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="10"
+                            Source="icon_down_arrow.png"
+                            WidthRequest="10" />
+                    </Grid>
+                </Border>
+                <Border
+                    Margin="0,0,5,8"
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=10}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="12"
+                            Style="{StaticResource lblRegular}"
+                            Text="Station"
+                            TextColor="White" />
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="10"
+                            Source="icon_down_arrow.png"
+                            WidthRequest="10" />
+                    </Grid>
+                </Border>
+                <Border
+                    Margin="0,0,0,0"
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=10}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="12"
+                            Style="{StaticResource lblRegular}"
+                            Text="Asset Type"
+                            TextColor="White" />
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="10"
+                            Source="icon_down_arrow.png"
+                            WidthRequest="10" />
+                    </Grid>
+                </Border>
+                <Border
+                    Margin="0,0,5,0"
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource Primary}"
+                    HorizontalOptions="Start"
+                    StrokeShape="{RoundRectangle CornerRadius=10}">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <Label
+                            Grid.Column="0"
+                            FontSize="12"
+                            Style="{StaticResource lblRegular}"
+                            Text="Alert Type"
+                            TextColor="White" />
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="10"
+                            Source="icon_down_arrow.png"
+                            WidthRequest="10" />
+                    </Grid>
+                </Border>
+
+                <Border
+                    Padding="12,10"
+                    BackgroundColor="{StaticResource Primary}"
+                    HorizontalOptions="End"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Image
+                        Aspect="AspectFit"
+                        HeightRequest="16"
+                        Source="icon_tab_five_black.png"
+                        WidthRequest="16" />
+                </Border>
+            </FlexLayout>
+
+            <!--<StackLayout>
+                <l:WrapLayout
+                    HorizontalOptions="FillAndExpand"
+                    IsSquare="true"
+                    Spacing="4"
+                    UniformColumns="3">
+                    <Border
+                        Margin="0,0,5,0"
+                        Padding="12,10"
+                        BackgroundColor="{StaticResource Primary}"
+                        StrokeShape="{RoundRectangle CornerRadius=10}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <Label
+                                Grid.Column="0"
+                                FontSize="12"
+                                Style="{StaticResource lblRegular}"
+                                Text="Zone"
+                                TextColor="White" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="10"
+                                Source="icon_down_arrow.png"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Margin="0,0,5,0"
+                        Padding="12,10"
+                        BackgroundColor="{StaticResource Primary}"
+                        StrokeShape="{RoundRectangle CornerRadius=10}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <Label
+                                Grid.Column="0"
+                                FontSize="12"
+                                Style="{StaticResource lblRegular}"
+                                Text="Division"
+                                TextColor="White" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="10"
+                                Source="icon_down_arrow.png"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Border>
+                    <Border
+                        Margin="0,0,5,8"
+                        Padding="12,10"
+                        BackgroundColor="{StaticResource Primary}"
+                        StrokeShape="{RoundRectangle CornerRadius=10}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <Label
+                                Grid.Column="0"
+                                FontSize="12"
+                                Style="{StaticResource lblRegular}"
+                                Text="Station"
+                                TextColor="White" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="10"
+                                Source="icon_down_arrow.png"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Border>
+                    <Border
+                        Margin="0,0,0,0"
+                        Padding="12,10"
+                        BackgroundColor="{StaticResource Primary}"
+                        StrokeShape="{RoundRectangle CornerRadius=10}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <Label
+                                Grid.Column="0"
+                                FontSize="12"
+                                Style="{StaticResource lblRegular}"
+                                Text="Asset Type"
+                                TextColor="White" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="10"
+                                Source="icon_down_arrow.png"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Border>
+                    <Border
+                        Margin="0,0,5,0"
+                        Padding="12,10"
+                        BackgroundColor="{StaticResource Primary}"
+                        HorizontalOptions="Start"
+                        StrokeShape="{RoundRectangle CornerRadius=10}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                            <Label
+                                Grid.Column="0"
+                                FontSize="12"
+                                Style="{StaticResource lblRegular}"
+                                Text="Alert Type"
+                                TextColor="White" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="10"
+                                Source="icon_down_arrow.png"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Padding="12,10"
+                        BackgroundColor="{StaticResource Primary}"
+                        HorizontalOptions="End"
+                        StrokeShape="{RoundRectangle CornerRadius=8}">
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="16"
+                            Source="icon_tab_five_black.png"
+                            WidthRequest="16" />
+                    </Border>
+                </l:WrapLayout>
+            </StackLayout>-->
+
+            <chart:SfCartesianChart x:Name="chart">
+
+
+                <chart:SfCartesianChart.ZoomPanBehavior>
+                    <chart:ChartZoomPanBehavior EnablePanning="True" ZoomMode="X" />
+                </chart:SfCartesianChart.ZoomPanBehavior>
+
+                <chart:SfCartesianChart.XAxes>
+                    <chart:DateTimeAxis
+                        Interval="1"
+                        ShowMajorGridLines="False"
+                        ShowMinorGridLines="False"
+                        ShowTrackballLabel="True" />
+                </chart:SfCartesianChart.XAxes>
+
+                <chart:SfCartesianChart.YAxes>
+                    <chart:NumericalAxis
+                        EdgeLabelsDrawingMode="Center"
+                        EdgeLabelsVisibilityMode="AlwaysVisible"
+                        LabelsIntersectAction="MultipleRows"
+                        LabelsPosition="Outside"
+                        ShowMajorGridLines="False"
+                        ShowMinorGridLines="False"
+                        ShowTrackballLabel="False"
+                        TickPosition="Inside" />
+                </chart:SfCartesianChart.YAxes>
+
+
+                <chart:SfCartesianChart.TrackballBehavior>
+                    <chart:ChartTrackballBehavior
+                        ActivationMode="TouchMove"
+                        DisplayMode="GroupAllPoints"
+                        ShowLabel="True"
+                        ShowLine="False" />
+
+
+                </chart:SfCartesianChart.TrackballBehavior>
+
+
+                <chart:SfCartesianChart.Legend>
+                    <chart:ChartLegend Placement="Top" />
+                </chart:SfCartesianChart.Legend>
+            </chart:SfCartesianChart>
+
+            <!--  Railway Zone Selection with Checkboxes  -->
+            <Frame
+                Margin="15"
+                Padding="10"
+                BorderColor="{StaticResource Gray100}"
+                CornerRadius="10"
+                HasShadow="False">
+                <StackLayout Spacing="10">
+                    <!--  Header with Select All  -->
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <CheckBox
+                            x:Name="chkSelectAll"
+                            Grid.Column="0"
+                            CheckedChanged="ChkSelectAll_CheckedChanged"
+                            Color="{StaticResource Primary}" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="16"
+                            Style="{StaticResource lblBold}"
+                            Text="Select All Zones"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <BoxView
+                        BackgroundColor="{StaticResource Gray100}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <!--  Zone List with Checkboxes  -->
+                    <CollectionView
+                        x:Name="zoneCollectionView"
+                        HeightRequest="200"
+                        SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Padding="5,2"
+                                    ColumnDefinitions="Auto,*"
+                                    ColumnSpacing="10">
+                                    <CheckBox
+                                        Grid.Column="0"
+                                        CheckedChanged="ZoneCheckBox_CheckedChanged"
+                                        IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                        Color="{StaticResource Primary}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Style="{StaticResource lblRegular}"
+                                        Text="{Binding ZoneCode}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <BoxView
+                        BackgroundColor="{StaticResource Gray100}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <!--  Footer with Search and Clear Buttons  -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button
+                            x:Name="btnSearch"
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            Clicked="BtnSearch_Clicked"
+                            CornerRadius="8"
+                            FontSize="14"
+                            HeightRequest="40"
+                            Text="Search"
+                            TextColor="White" />
+                        <Button
+                            x:Name="btnClear"
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource Gray100}"
+                            Clicked="BtnClear_Clicked"
+                            CornerRadius="8"
+                            FontSize="14"
+                            HeightRequest="40"
+                            Text="Clear"
+                            TextColor="Black" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <!--  Railway Division Selection with Checkboxes (Zone-wise)  -->
+            <Frame
+                Margin="15,0,15,15"
+                Padding="10"
+                BorderColor="{StaticResource Gray100}"
+                CornerRadius="10"
+                HasShadow="False">
+                <StackLayout Spacing="10">
+                    <!--  Header with Select All  -->
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <CheckBox
+                            x:Name="chkSelectAllDivisions"
+                            Grid.Column="0"
+                            CheckedChanged="ChkSelectAllDivisions_CheckedChanged"
+                            Color="{StaticResource Primary}" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="16"
+                            Style="{StaticResource lblBold}"
+                            Text="Select All Divisions"
+                            TextColor="Black"
+                            VerticalOptions="Center" />
+                    </Grid>
+
+                    <BoxView
+                        BackgroundColor="{StaticResource Gray100}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <!--  Division List with Checkboxes  -->
+                    <CollectionView
+                        x:Name="divisionCollectionView"
+                        HeightRequest="200"
+                        SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Padding="5,2"
+                                    ColumnDefinitions="Auto,*"
+                                    ColumnSpacing="10">
+                                    <CheckBox
+                                        Grid.Column="0"
+                                        CheckedChanged="DivisionCheckBox_CheckedChanged"
+                                        IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                        Color="{StaticResource Primary}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="14"
+                                        Style="{StaticResource lblRegular}"
+                                        Text="{Binding DivisionCode}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="Please select zone(s) first"
+                                TextColor="{StaticResource PrimaryGray}"
+                                VerticalOptions="Center" />
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+
+                    <BoxView
+                        BackgroundColor="{StaticResource Gray100}"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <!--  Footer with Search and Clear Buttons  -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button
+                            x:Name="btnSearchDivisions"
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            Clicked="BtnSearchDivisions_Clicked"
+                            CornerRadius="8"
+                            FontSize="14"
+                            HeightRequest="40"
+                            Text="Search"
+                            TextColor="White" />
+                        <Button
+                            x:Name="btnClearDivisions"
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource Gray100}"
+                            Clicked="BtnClearDivisions_Clicked"
+                            CornerRadius="8"
+                            FontSize="14"
+                            HeightRequest="40"
+                            Text="Clear"
+                            TextColor="Black" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

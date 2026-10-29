@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AttendEdgeMobileClient.Views.Account.CodeVerificationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls"
+    NavigationPage.BackButtonTitle="False"
+    NavigationPage.HasNavigationBar="False">
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*,Auto,Auto,Auto"
+        RowSpacing="15">
+
+        <!--#region [ Bsck Button ]-->
+        <Image
+            Margin="-5,0,0,0"
+            Aspect="AspectFit"
+            BackgroundColor="Transparent"
+            HeightRequest="30"
+            HorizontalOptions="Start"
+            Source="icon_back.png"
+            WidthRequest="30">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                    x:Name="ImgBack"
+                    NumberOfTapsRequired="1"
+                    Tapped="ImgBack_Tapped" />
+            </Image.GestureRecognizers>
+        </Image>
+        <!--#endregion-->
+
+        <!--#region [ Content ]-->
+        <StackLayout Grid.Row="1" Spacing="10">
+            <Label
+                FontSize="30"
+                Style="{StaticResource lblBold}"
+                Text="Enter Verification Code"
+                TextColor="{StaticResource PrimaryDarkText}" />
+            <Label
+                FontSize="18"
+                Style="{StaticResource lblRegular}"
+                Text="We have sent the code verification to your mobile number"
+                TextColor="{StaticResource Gray400}" />
+        </StackLayout>
+        <!--#endregion-->
+
+        <!--#region [ Verification Image ]-->
+        <Image
+            Grid.Row="2"
+            Aspect="AspectFit"
+            Source="img_verification_code.png"
+            VerticalOptions="CenterAndExpand" />
+        <!--#endregion-->
+
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="*,*,*,*"
+            ColumnSpacing="15">
+            <!--#region [ Box - 1 ]-->
+            <Border
+                Grid.Column="0"
+                HeightRequest="80"
+                Stroke="{StaticResource Gray100}"
+                StrokeShape="{RoundRectangle CornerRadius=10}">
+                <ext:BorderlessEntry
+                    x:Name="First"
+                    ClassId="1"
+                    FontSize="25"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    MaxLength="1"
+                    Style="{StaticResource extEntry}"
+                    TextChanged="EntVerificationCode_Tapped"
+                    TextColor="{StaticResource PrimaryBlack}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Border>
+            <!--#endregion-->
+
+            <!--#region [ Box - 2 ]-->
+            <Border
+                Grid.Column="1"
+                HeightRequest="80"
+                Stroke="{StaticResource Gray100}"
+                StrokeShape="{RoundRectangle CornerRadius=10}">
+                <ext:BorderlessEntry
+                    x:Name="Second"
+                    ClassId="2"
+                    FontSize="25"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    MaxLength="1"
+                    Style="{StaticResource extEntry}"
+                    TextChanged="EntVerificationCode_Tapped"
+                    TextColor="{StaticResource PrimaryBlack}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Border>
+            <!--#endregion-->
+
+            <!--#region [ Bpx - 3 ]-->
+            <Border
+                Grid.Column="2"
+                HeightRequest="80"
+                Stroke="{StaticResource Gray100}"
+                StrokeShape="{RoundRectangle CornerRadius=10}">
+                <ext:BorderlessEntry
+                    x:Name="Third"
+                    ClassId="3"
+                    FontSize="25"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    MaxLength="1"
+                    Style="{StaticResource extEntry}"
+                    TextChanged="EntVerificationCode_Tapped"
+                    TextColor="{StaticResource PrimaryBlack}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Border>
+            <!--#endregion-->
+
+            <!--#region [ Box - 4 ]-->
+            <Border
+                Grid.Column="3"
+                HeightRequest="80"
+                Stroke="{StaticResource Gray100}"
+                StrokeShape="{RoundRectangle CornerRadius=10}">
+                <ext:BorderlessEntry
+                    x:Name="Fourth"
+                    ClassId="4"
+                    FontSize="25"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    MaxLength="1"
+                    TextChanged="EntVerificationCode_Tapped"
+                    TextColor="{StaticResource PrimaryBlack}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Border>
+            <!--#endregion-->
+        </Grid>
+
+
+        <!--#region [ Resend It ]-->
+        <StackLayout
+            Grid.Row="4"
+            HorizontalOptions="End"
+            Orientation="Horizontal">
+            <Label
+                FontSize="18"
+                Style="{StaticResource lblRegular}"
+                Text="00:06  "
+                TextColor="Black" />
+            <Label
+                FontSize="18"
+                Style="{StaticResource lblRegular}"
+                Text="Send it"
+                TextColor="{StaticResource Primary}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="lblResend_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <!--#endregion-->
+
+        </StackLayout>
+
+        <!--#region [ Button Verify ]-->
+        <Button
+            x:Name="BtnVerify"
+            Grid.Row="5"
+            Padding="0"
+            Clicked="BtnVerify_Clicked"
+            Style="{StaticResource btnPrimary}"
+            Text="Verify" />
+        <!--#endregion-->
+
+
+    </Grid>
+</ContentPage>

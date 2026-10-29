@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.Tapped.DashboardView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Padding="0,0,0,0"
+    Shell.NavBarIsVisible="False">
+    <Grid
+        Margin="0"
+        Padding="0"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="10">
+        <VerticalStackLayout
+            Spacing="10"
+            Grid.Row="0">
+            <Label
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource lblBold}"
+                Text="Today Attendance"
+                TextColor="{StaticResource PrimaryBlack}" />
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="10">
+
+                <!--#region [ Check-In ]-->
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    HeightRequest="120"
+                    Stroke="Transparent"
+                    StrokeShape="{RoundRectangle CornerRadius=15}">
+                    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+                        <StackLayout
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Border
+                                Padding="5"
+                                BackgroundColor="#EAF3FF"
+                                StrokeShape="{RoundRectangle CornerRadius=8}">
+                                <Image
+                                    HeightRequest="17"
+                                    Source="icon_check_in.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="17" />
+                            </Border>
+                            <Label
+                                FontSize="14"
+                                Style="{x:DynamicResource lblSemiBold}"
+                                Text="Check In"
+                                TextColor="{StaticResource AppColor1}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" VerticalOptions="End">
+                            <Label
+                                FontSize="14"
+                                Style="{StaticResource lblBold}"
+                                Text="{Binding CheckInTime, StringFormat='{0:hh:mm tt}', Mode=TwoWay, TargetNullValue=--:--}"
+                                TextColor="Black" />
+                            <Label
+                                FontSize="13"
+                                IsVisible="False"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="On time"
+                                TextColor="{StaticResource AppColor1}" />
+                        </StackLayout>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+
+                <!--#region [ Check- Out ]-->
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    HeightRequest="120"
+                    Stroke="Transparent"
+                    StrokeShape="{RoundRectangle CornerRadius=15}">
+                    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+                        <StackLayout
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Border
+                                Padding="5"
+                                BackgroundColor="#EAF3FF"
+                                StrokeShape="{RoundRectangle CornerRadius=8}">
+                                <Image
+                                    HeightRequest="17"
+                                    Source="icon_check_in.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="17" />
+                            </Border>
+                            <Label
+                                FontSize="14"
+                                Style="{x:DynamicResource lblSemiBold}"
+                                Text="Check Out"
+                                TextColor="{StaticResource AppColor1}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" VerticalOptions="End">
+                            <Label
+                                FontSize="14"
+                                Style="{StaticResource lblBold}"
+                                Text="{Binding CheckOutTime, StringFormat='{0:hh:mm tt}', TargetNullValue=--:--}"
+                                TextColor="Black" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="13"
+                                IsVisible="False"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="Go Home"
+                                TextColor="{StaticResource AppColor1}" />
+                        </StackLayout>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+
+                <!--#region [ Breack-In ]-->
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    HeightRequest="125"
+                    Stroke="Transparent"
+                    StrokeShape="{RoundRectangle CornerRadius=15}">
+                    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+
+                        <StackLayout
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Border
+                                Padding="5"
+                                BackgroundColor="#EAF3FF"
+                                StrokeShape="{RoundRectangle CornerRadius=8}">
+                                <Image
+                                    HeightRequest="17"
+                                    Source="icon_cup.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="17" />
+                            </Border>
+                            <Label
+                                FontSize="14"
+                                LineBreakMode="WordWrap"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="Break Start"
+                                TextColor="{StaticResource AppColor1}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Spacing="5"
+                            VerticalOptions="End">
+                            <Label
+                                FontSize="14"
+                                Style="{StaticResource lblBold}"
+                                Text="{Binding BreakInTime, StringFormat='{0:hh:mm tt}', TargetNullValue=--:--}"
+                                TextColor="{StaticResource PrimaryBlack}" />
+                            <Label
+                                FontSize="13"
+                                IsVisible="False"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="Avg Time 30 min"
+                                TextColor="{StaticResource AppColor1}" />
+                        </StackLayout>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+
+                <!--#region [ Breack-Out ]-->
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="15"
+                    BackgroundColor="#FFFFFF"
+                    HeightRequest="120"
+                    Stroke="Transparent"
+                    StrokeShape="{RoundRectangle CornerRadius=15}">
+                    <Grid RowDefinitions="Auto,*" RowSpacing="10">
+                        <StackLayout
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <Border
+                                Padding="5"
+                                BackgroundColor="#EAF3FF"
+                                StrokeShape="{RoundRectangle CornerRadius=8}">
+                                <Image
+                                    HeightRequest="20"
+                                    Source="icon_break_out.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="20" />
+                            </Border>
+                            <Label
+                                FontSize="14"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="Break End"
+                                TextColor="{StaticResource AppColor1}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Spacing="5"
+                            VerticalOptions="End">
+                            <Label
+                                FontSize="14"
+                                Style="{StaticResource lblBold}"
+                                Text="{Binding BreakOutTime, StringFormat='{0:hh:mm tt}', Mode=TwoWay, TargetNullValue=--:--}"
+                                TextColor="{StaticResource PrimaryBlack}" />
+                            <Label
+                                FontSize="13"
+                                IsVisible="False"
+                                Style="{StaticResource lblSemiBold}"
+                                Text="Working Days"
+                                TextColor="{StaticResource AppColor1}" />
+                        </StackLayout>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <StackLayout
+            Padding="10,0"
+            Grid.Row="1"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal">
+            <Label
+                FontSize="18"
+                Style="{StaticResource lblBold}"
+                Text="Today Attendance"
+                TextColor="{StaticResource PrimaryBlack}" />
+            <Label
+                FontSize="18"
+                HorizontalOptions="EndAndExpand"
+                Style="{StaticResource lblSemiBold}"
+                Text="View All"
+                TextColor="{StaticResource Primary}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ViewAll_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
+
+        <ScrollView Grid.Row="2" VerticalScrollBarVisibility="Never">
+            <Grid RowDefinitions="*,Auto" RowSpacing="0">
+                <!--<Grid Grid.Row="0"
+                    RowDefinitions="Auto,*"
+                    RowSpacing="5">
+
+                    
+
+                </Grid>-->
+                <CollectionView
+                    x:Name="lstAttendence"
+                    Grid.Row="0"
+                    SelectionMode="None"
+                    VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,5"
+                                Padding="10"
+                                BackgroundColor="White"
+                                StrokeShape="{RoundRectangle CornerRadius=10}">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+
+                                    <!--Icon-->
+                                    <Border
+                                        Grid.Column="0"
+                                        Padding="15"
+                                        BackgroundColor="{StaticResource AppSecondery}"
+                                        StrokeShape="{RoundRectangle CornerRadius=10}"
+                                        VerticalOptions="Center">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            HeightRequest="25"
+                                            Source="{Binding Icon}"
+                                            WidthRequest="25" />
+                                    </Border>
+
+                                    <!--Title + Date-->
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        Spacing="5"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontSize="14"
+                                            Style="{StaticResource lblBold}"
+                                            Text="{Binding Title}"
+                                            TextColor="{StaticResource PrimaryBlack}" />
+                                        <Label
+                                            FontSize="13"
+                                            Style="{StaticResource lblRegular}"
+                                            Text="{Binding Time, StringFormat='{0:MMM dd, yyyy}'}"
+                                            TextColor="{StaticResource AppColor1}" />
+                                    </StackLayout>
+
+                                    <!--Time-->
+                                    <StackLayout
+                                        Grid.Column="2"
+                                        Spacing="5"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontSize="14"
+                                            Style="{StaticResource lblBold}"
+                                            Text="{Binding Time, StringFormat='{0:hh:mm tt}'}"
+                                            TextColor="{StaticResource PrimaryBlack}" />
+                                        <Label
+                                            FontSize="13"
+                                            Style="{StaticResource lblRegular}"
+                                            Text="On Time"
+                                            TextColor="{StaticResource AppColor1}" />
+                                    </StackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label
+                    x:Name="lblRecordNotFound"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Record not found!"
+                    VerticalOptions="Center" />
+            </Grid>
+        </ScrollView>
+
+        <Border
+            x:Name="brdSwipeToCheckIn"
+            Grid.Row="3"
+            Padding="10"
+            BackgroundColor="{StaticResource Primary}"
+            StrokeShape="{RoundRectangle CornerRadius=10}"
+            VerticalOptions="EndAndExpand">
+
+            <Grid>
+                <!--  Track background  -->
+                <Label
+                    x:Name="lblSwipeButton"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="Swipe to Check In"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+                <!--  Swipe Button  -->
+                <Grid ColumnDefinitions="Auto,50,*" ColumnSpacing="5">
+                    <Border
+                        x:Name="SwipeThumb"
+                        Grid.Column="0"
+                        Padding="10"
+                        BackgroundColor="White"
+                        HorizontalOptions="Start"
+                        StrokeShape="{RoundRectangle CornerRadius=10}">
+
+                        <Image
+                            x:Name="imgSwipe"
+                            HeightRequest="25"
+                            Source="icon_swipe.png"
+                            WidthRequest="25" />
+
+                        <Border.GestureRecognizers>
+                            <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentView>

@@ -1,0 +1,372 @@
+<FlyoutPage
+    x:Class="AttendEdgeMobileClient.Views.Tapped.CustomeTappedPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource Gray100}">
+
+    <FlyoutPage.Flyout>
+        <ContentPage
+            BackgroundColor="White"
+            Title="Menu">
+
+            <Grid RowDefinitions="Auto,*">
+
+                <!-- Header -->
+                <Grid
+                    Grid.Row="0"
+                    BackgroundColor="#3285F4"
+                    Padding="10">
+
+                    <VerticalStackLayout
+                        Spacing="3"
+                        VerticalOptions="Center">
+
+                        <Border
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            HorizontalOptions="Start">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="30" />
+                            </Border.StrokeShape>
+
+                            <Label
+                                x:Name="lblInitial"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="#3285F4"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center" />
+
+                        </Border>
+
+                        <Label
+                            x:Name="lblUserName"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            Margin="0,6,0,0" />
+
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- Menu -->
+                <ScrollView Grid.Row="1">
+
+                    <VerticalStackLayout
+                        Padding="10,15"
+                        Spacing="2">
+
+                        <!-- Profile -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="ProfileMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_tab_three_blue.png"
+                                    Style="{StaticResource MenuImgSmall}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Profile"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                        <!-- Leave Balance -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="LeaveBalanceMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_tab_two_blue.png"
+                                    Style="{StaticResource MenuImgSmall}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Leave Balance"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                        <!-- Dashboard -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="DashboardMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_tab_one_blue.png"
+                                    Style="{StaticResource MenuImgSmall}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Dashboard"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                        <!-- Apply Leave -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="LeaveMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_tab_five_blue.png"
+                                    Style="{StaticResource MenuImgSmall}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Apply Leave"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                        <!-- Holidays -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="HolidayMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_tab_four_blue.png"
+                                    Style="{StaticResource MenuImgSmall}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Holidays"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                        <BoxView
+                            HeightRequest="1"
+                            BackgroundColor="#EEEEEE"
+                            Margin="0,5" />
+
+                        <!-- Change Password -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="ChangePasswordMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_changepassword"
+                                    Style="{StaticResource MenuImgSmall}">
+
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior
+                                            TintColor="#3285F4" />
+                                    </Image.Behaviors>
+
+                                </Image>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Change Password"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                        <!-- Logout -->
+                        <Border
+                            Padding="15,13"
+                            BackgroundColor="Transparent"
+                            StrokeThickness="0">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="LogoutMenu_Tapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="40,*">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFit"
+                                    Source="icon_logout"
+                                    Style="{StaticResource MenuImgSmall}">
+
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior
+                                            TintColor="#3285F4" />
+                                    </Image.Behaviors>
+
+                                </Image>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Logout"
+                                    FontSize="16"
+                                    TextColor="#333333"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+                        </Border>
+
+                    </VerticalStackLayout>
+                </ScrollView>
+
+            </Grid>
+
+        </ContentPage>
+    </FlyoutPage.Flyout>
+
+
+    <!-- =========================
+         MAIN CONTENT
+         ========================= -->
+    <FlyoutPage.Detail>
+
+        <ContentPage
+            BackgroundColor="{StaticResource Gray100}"
+            NavigationPage.HasNavigationBar="False">
+
+            <Grid>
+
+                <Grid RowDefinitions="*,50">
+
+                    <!-- Current selected page -->
+                    <ContentView
+                        x:Name="MainContent"
+                        Grid.Row="0"
+                        Padding="10,10,10,20"
+                        BackgroundColor="#F6F6F6" />
+
+                    <!-- Bottom tabs -->
+                    <Grid
+
+                        Grid.Row="1"
+                        BackgroundColor="#F6F6F6"
+                        HeightRequest="50"
+                        RowSpacing="0"
+                        VerticalOptions="End">
+
+                        <GraphicsView
+                            x:Name="BottomCurve"
+                            Drawable="{StaticResource BottomBarShape}"
+                            HeightRequest="50" />
+
+                        <Grid
+                            x:Name="TabGrid"
+                            Padding="10"
+                            ColumnDefinitions="*,*,*,*,*"
+                            HeightRequest="50"
+                            VerticalOptions="End" />
+
+                    </Grid>
+                    
+                    <!-- Loader -->
+                    <ext:CustomLoaderView
+                        x:Name="loaderView"
+                        Grid.RowSpan="2"
+                        IsVisible="False" />
+
+                    <!-- Menu button -->
+                    <Border
+                        WidthRequest="45"
+                        HeightRequest="45"
+                        Margin="10,0,0,0"
+                        Padding="0"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        BackgroundColor="Transparent"
+                        StrokeThickness="0"
+                        ZIndex="10">
+
+                        <ImageButton
+                            Source="menu.png"
+                            BackgroundColor="Transparent"
+                            Padding="10"
+                            Clicked="MenuButton_Clicked" />
+
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+
+        </ContentPage>
+
+    </FlyoutPage.Detail>
+
+</FlyoutPage>

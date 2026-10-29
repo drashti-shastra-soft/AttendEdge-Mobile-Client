@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.Tapped.LeaveBalanceView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:AttendEdgeMobileClient.Converter"
+    xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <conv:IntToBGColorConverter x:Key="IntToBGColorConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <RefreshView
+        x:Name="LeaveBalanceRefreshView"
+        Grid.Row="1"
+        RefreshColor="#2F80ED"
+        Refreshing="OnRefreshing">
+        <Grid RowDefinitions="Auto,Auto,*" RowSpacing="15">
+            <StackLayout Spacing="15" Grid.Row="0">
+                <Label
+                    FontSize="18"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource lblExtraBold}"
+                    Text="Leave Balance"
+                    TextColor="{StaticResource Black}" />
+
+                <Grid
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="10">
+
+                    <!--Sick Leave-->
+
+                    <Border
+                        Grid.Column="0"
+                        BackgroundColor="#FAFCF7"
+                        Stroke="#9BD32A"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 20">
+
+                        <Grid
+                            Padding="10"
+                            RowSpacing="5"
+                            RowDefinitions="*,Auto">
+
+                            <Label
+                                Text="Sick&#x0a;Leave"
+                                FontSize="16"
+                                TextColor="#111111"
+                                Style="{StaticResource lblBold}"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="lblSickLeaveCount"
+                                Grid.Row="1"
+                                Text="00"
+                                FontSize="16"
+                                Style="{StaticResource lblBold}"
+                                TextColor="#91D229"
+                                VerticalOptions="Start" />
+
+                        </Grid>
+                    </Border>
+
+                    <!--Casual Leave-->
+
+                    <Border
+                        Grid.Column="1"
+                        BackgroundColor="#F7FCFC"
+                        Stroke="#2DC4C7"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 20">
+
+                        <Grid
+                            Padding="10"
+                            RowSpacing="5"
+                            RowDefinitions="*,Auto">
+                            <Label
+                                Text="Casual&#x0a;Leave"
+                                FontSize="16"
+                                TextColor="#111111"
+                                Style="{StaticResource lblBold}"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="lblCasualLeaveCount"
+                                Grid.Row="1"
+                                Text="00"
+                                FontSize="16"
+                                VerticalOptions="Start"
+                                Style="{StaticResource lblBold}"
+                                TextColor="#27BFC2" />
+
+                        </Grid>
+                    </Border>
+
+                    <!--Paid Leave-->
+
+                    <Border
+                        Grid.Column="2"
+                        BackgroundColor="#FFF9F9"
+                        Stroke="#FF7870"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 20">
+
+                        <Grid
+                            Padding="10"
+                            RowSpacing="0"
+                            RowDefinitions="*,Auto">
+
+                            <Label
+                                Text="Paid&#x0a;Leave"
+                                FontSize="16"
+                                TextColor="#111111"
+                                Style="{StaticResource lblBold}"
+                                VerticalOptions="Start" />
+
+                            <Label
+                                x:Name="lblPaidLeaveCount"
+                                Grid.Row="1"
+                                Text="00"
+                                FontSize="16"
+                                VerticalOptions="Start"
+                                Style="{StaticResource lblBold}"
+                                TextColor="#FF766E"/>
+
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </StackLayout>
+
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,Auto">
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource lblBold}"
+                    Text="Leave Request"
+                    TextColor="{StaticResource Black}" />
+
+                <!--<Label
+                    Grid.Column="1"
+                    x:Name="LblFilter"
+                    FontSize="18"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Filter"
+                    TextColor="{StaticResource Primary}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LblFilter_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>-->
+
+                <ImageButton
+                    Grid.Column="1"
+                    Source="icon_filter.png"
+                    WidthRequest="32"
+                    HeightRequest="32"
+                    BackgroundColor="Transparent"
+                    Aspect="AspectFit"
+                    Padding="2">
+                    <ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LblFilter_Tapped" />
+                    </ImageButton.GestureRecognizers>
+                </ImageButton>
+            </Grid>
+
+            <!--<Grid
+                Grid.Row="1"
+                    ColumnDefinitions="*,Auto">
+
+                <Label
+                    Text="Leave Request"
+                    FontSize="18"
+                    Style="{StaticResource lblBold}"
+                    TextColor="#111111"
+                    VerticalOptions="Center" />
+
+                -->
+            <!-- Filter Icon -->
+            <!--
+                <ImageButton
+                    Grid.Column="1"
+                    Source="icon_filter.png"
+                    WidthRequest="32"
+                    HeightRequest="32"
+                    BackgroundColor="Transparent"
+                    Aspect="AspectFit"
+                    Padding="2">
+                    <ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="LblFilter_Tapped" />
+                    </ImageButton.GestureRecognizers>
+                </ImageButton>
+            </Grid>-->
+
+            <CollectionView
+                x:Name="clsLeaveRequest"
+                Grid.Row="2"
+                VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                
+                <!--  Empty State  -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="40,60"
+                        HorizontalOptions="Center"
+                        Spacing="12"
+                        VerticalOptions="Center">
+                        <Border
+                            Background="#E6F0FF"
+                            HeightRequest="72"
+                            HorizontalOptions="Center"
+                            StrokeShape="RoundRectangle 36"
+                            StrokeThickness="0"
+                            WidthRequest="72">
+                            <Image
+                                HeightRequest="36"
+                                HorizontalOptions="Center"
+                                Source="icon_tab_two_blue.png"
+                                VerticalOptions="Center"
+                                WidthRequest="36">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="#007BFF" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Border>
+                        <Label
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="No Leave Found"
+                            TextColor="#1A1A1A" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Padding="15"
+                            BackgroundColor="White"
+                            Stroke="#E1E1E1"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="0">
+                                <!-- Request Date + Status -->
+                                <Grid ColumnDefinitions="*,Auto">
+                                    
+                                    <VerticalStackLayout Spacing="3">
+
+                                        <Label
+                                            Text="Request Date"
+                                            FontSize="15"
+                                            Style="{StaticResource lblSemiBold}"
+                                            TextColor="#444444" />
+
+                                        <Label
+                                            FontSize="16"
+                                            FontAttributes="Bold"
+                                            TextColor="#111111">
+
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="{Binding StartDate,StringFormat='{0:MMM dd, yyyy}'}" />
+                                                    <Span FontAttributes="Bold" Text=" - " />
+                                                    <Span FontAttributes="Bold" Text="{Binding EndDate,StringFormat='{0:MMM dd, yyyy}'}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+
+                                    <!-- STATUS -->
+                                    <Border
+                                        Grid.Column="1"
+                                        Padding="10,6"
+                                        StrokeThickness="0"
+                                        Stroke="Transparent"
+                                        StrokeShape="RoundRectangle 8"
+                                        BackgroundColor="#E8F7ED"
+                                        VerticalOptions="Center">
+
+                                        <Border.Triggers>
+
+                                            <!-- Approved -->
+                                            <DataTrigger
+                                                TargetType="Border"
+                                                Binding="{Binding Status}"
+                                                Value="Approved">
+
+                                                <Setter
+                                                    Property="BackgroundColor"
+                                                    Value="#E8F7ED" />
+
+                                            </DataTrigger>
+
+                                            <!-- Rejected -->
+                                            <DataTrigger
+                                                TargetType="Border"
+                                                Binding="{Binding Status}"
+                                                Value="Rejected">
+
+                                                <Setter
+                                                    Property="BackgroundColor"
+                                                    Value="#FDEBEC" />
+
+                                            </DataTrigger>
+
+                                            <!-- Pending -->
+                                            <DataTrigger
+                                                TargetType="Border"
+                                                Binding="{Binding Status}"
+                                                Value="Pending">
+
+                                                <Setter
+                                                    Property="BackgroundColor"
+                                                    Value="#FFF4D6" />
+
+                                            </DataTrigger>
+
+                                        </Border.Triggers>
+
+
+                                        <Label
+                                            Text="{Binding Status}"
+                                            FontSize="14"
+                                            FontAttributes="Bold"
+                                            TextColor="#20A94B"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+
+                                            <Label.Triggers>
+
+                                                <!-- Approved -->
+                                                <DataTrigger
+                                                    TargetType="Label"
+                                                    Binding="{Binding Status}"
+                                                    Value="Approved">
+
+                                                    <Setter
+                                                        Property="TextColor"
+                                                        Value="#20A94B" />
+
+                                                </DataTrigger>
+
+                                                <!-- Rejected -->
+                                                <DataTrigger
+                                                    TargetType="Label"
+                                                    Binding="{Binding Status}"
+                                                    Value="Rejected">
+
+                                                    <Setter
+                                                        Property="TextColor"
+                                                        Value="#DC3545" />
+
+                                                </DataTrigger>
+
+                                                <!-- Pending -->
+                                                <DataTrigger
+                                                    TargetType="Label"
+                                                    Binding="{Binding Status}"
+                                                    Value="Pending">
+
+                                                    <Setter
+                                                        Property="TextColor"
+                                                        Value="#D99A00" />
+
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Border>
+                                </Grid>
+
+                                <!-- Separator -->
+                                <BoxView
+                                    Margin="0,10"
+                                    HeightRequest="1"
+                                    BackgroundColor="#E5E5E5" />
+
+                                <!-- Details -->
+                                <Grid
+                                    ColumnDefinitions="*,*,*"
+                                    ColumnSpacing="10">
+
+                                    <!-- Request Day -->
+                                    <VerticalStackLayout
+                                        Grid.Column="0"
+                                        Spacing="0">
+
+                                        <Label
+                                            Text="Request Day"
+                                            FontSize="14"
+                                            TextColor="#444444" />
+                                        <Label
+                                            Text="{Binding TotalDays, StringFormat='{0:0.##} Days'}"
+                                            FontSize="18"
+                                            Style="{StaticResource lblBold}"
+                                            TextColor="#111111" />
+                                    </VerticalStackLayout>
+
+
+                                    <!-- Reason -->
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Spacing="0">
+
+                                        <Label
+                                            Text="Reason"
+                                            FontSize="14"
+                                            TextColor="#444444" />
+
+                                        <Label
+                                            Text="{Binding LeaveType, TargetNullValue=Unknown}"
+                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            TextColor="#111111"
+                                            LineBreakMode="TailTruncation" />
+
+                                    </VerticalStackLayout>
+
+                                    <!-- Request Type -->
+                                    <VerticalStackLayout
+                                        Grid.Column="2"
+                                        Spacing="0">
+
+                                        <Label
+                                            Text="Request Type"
+                                            FontSize="14"
+                                            TextColor="#444444" />
+
+                                        <Label
+                                            FontSize="18"
+                                            FontAttributes="Bold"
+                                            TextColor="#111111">
+
+                                            <Label.Triggers>
+
+                                                <!-- Half Day -->
+                                                <DataTrigger
+                                                    TargetType="Label"
+                                                    Binding="{Binding IsHalfDay}"
+                                                    Value="True">
+
+                                                    <Setter
+                                                        Property="Text"
+                                                        Value="Half Day" />
+
+                                                </DataTrigger>
+
+                                                <!-- Full Day -->
+                                                <DataTrigger
+                                                    TargetType="Label"
+                                                    Binding="{Binding IsHalfDay}"
+                                                    Value="False">
+
+                                                    <Setter
+                                                        Property="Text"
+                                                        Value="Full Day" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </RefreshView>
+</ContentView>

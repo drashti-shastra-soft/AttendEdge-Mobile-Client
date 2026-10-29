@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.MyProfile.PersonalView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls">
+    <Grid
+        Margin="0,0,0,0"
+        RowDefinitions="Auto,Auto,Auto,Auto"
+        RowSpacing="20">
+        <Border
+            Grid.Row="0"
+            Margin="0,0"
+            Padding="0"
+            Stroke="{StaticResource Primary}"
+            StrokeShape="{RoundRectangle CornerRadius=8}">
+            <Grid
+                Margin="0"
+                Padding="10,0"
+                ColumnDefinitions="*,Auto"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="0">
+                <Label
+                    Grid.Row="0"
+                    Margin="0,8,0,0"
+                    FontSize="14"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Full Name"
+                    TextColor="{StaticResource Primary}" />
+                <Label
+                    x:Name="lblName"
+                    Grid.Row="1"
+                    FontSize="16"
+                    HeightRequest="35"
+                    Style="{StaticResource lblRegular}"
+                    TextColor="{StaticResource PrimaryBlack}" />
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            Margin="0,0"
+            Padding="0"
+            Stroke="{StaticResource Primary}"
+            StrokeShape="{RoundRectangle CornerRadius=8}">
+            <Grid
+                Margin="0"
+                Padding="10,0"
+                ColumnDefinitions="*,Auto"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="0">
+                <Label
+                    Grid.Row="0"
+                    Margin="0,8,0,0"
+                    FontSize="14"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Email Address"
+                    TextColor="{StaticResource Primary}" />
+                <Label
+                    x:Name="lblEmail"
+                    Grid.Row="1"
+                    FontSize="16"
+                    HeightRequest="35"
+                    Style="{StaticResource lblRegular}"
+                    TextColor="{StaticResource PrimaryBlack}" />
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Row="2"
+            Margin="0,0"
+            Padding="0"
+            Stroke="{StaticResource Primary}"
+            StrokeShape="{RoundRectangle CornerRadius=8}">
+            <Grid
+                Margin="0"
+                Padding="10,0"
+                ColumnDefinitions="*,Auto"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="0">
+                <Label
+                    Grid.Row="0"
+                    Margin="0,8,0,0"
+                    FontSize="14"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Phone Number"
+                    TextColor="{StaticResource Primary}" />
+                <Label
+                    x:Name="lblPhone"
+                    Grid.Row="1"
+                    FontSize="16"
+                    HeightRequest="35"
+                    Style="{StaticResource lblRegular}"
+                    TextColor="{StaticResource PrimaryBlack}" />
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Row="3"
+            Margin="0,0"
+            Padding="0"
+            Stroke="{StaticResource Primary}"
+            StrokeShape="{RoundRectangle CornerRadius=8}">
+            <Grid
+                Margin="0"
+                Padding="10,0"
+                ColumnDefinitions="*,Auto"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="0">
+                <Label
+                    Grid.Row="0"
+                    Margin="0,8,0,0"
+                    FontSize="14"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Address"
+                    TextColor="{StaticResource Primary}" />
+                <Label
+                    x:Name="lblAddress"
+                    Grid.Row="1"
+                    FontSize="16"
+                    HeightRequest="35"
+                    Style="{StaticResource lblRegular}"
+                    TextColor="{StaticResource PrimaryBlack}" />
+            </Grid>
+        </Border>
+    </Grid>
+</ContentView>

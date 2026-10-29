@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.MyProfile.AdharView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls">
+    <Grid RowDefinitions="650,Auto" RowSpacing="20">
+        <CollectionView x:Name="clsUserDocuments" Grid.Row="0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="10"
+                    Orientation="Vertical"
+                    Span="5"
+                    VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView>
+                        <Grid
+                            ColumnSpacing="10"
+                            HeightRequest="100"
+                            VerticalOptions="StartAndExpand"
+                            WidthRequest="100">
+                            <Border StrokeShape="{RoundRectangle CornerRadius=10}">
+                                <Image Aspect="AspectFill" Source="{Binding Thumbnail}" />
+                            </Border>
+                        </Grid>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Image
+            Grid.Row="0"
+            HeightRequest="60"
+            HorizontalOptions="EndAndExpand"
+            Source="icon_plus.png"
+            VerticalOptions="EndAndExpand"
+            WidthRequest="60">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadDocument_Tapped" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Border
+            x:Name="bdrSelectphoto"
+            Grid.Row="0"
+            Margin="0,0,55,40"
+            Padding="10"
+            BackgroundColor="{StaticResource White}"
+            HorizontalOptions="EndAndExpand"
+            IsVisible="False"
+            StrokeShape="{RoundRectangle CornerRadius=10}"
+            VerticalOptions="EndAndExpand"
+            WidthRequest="150">
+            <StackLayout Spacing="5">
+                <Label
+                    Style="{StaticResource lblExtraBold}"
+                    Text="Select file"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectDocument_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView HeightRequest="2" Color="Black" />
+                <Label
+                    Style="{StaticResource lblExtraBold}"
+                    Text="Choose photo"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectPhoto_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Border>
+    </Grid>
+</ContentView>

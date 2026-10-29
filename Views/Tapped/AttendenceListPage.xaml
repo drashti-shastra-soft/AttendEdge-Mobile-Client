@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AttendEdgeMobileClient.Views.Tapped.AttendenceListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    NavigationPage.HasNavigationBar="False">
+    <RefreshView
+        x:Name="AttendenceListRefreshView"
+        Grid.Row="1"
+        RefreshColor="#2F80ED"
+        Refreshing="OnRefreshing">
+        <Grid Margin="10,15" RowDefinitions="Auto,*" RowSpacing="10">
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="Auto,*"
+                HorizontalOptions="FillAndExpand">
+                <Border
+                    Grid.Column="0"
+                    Background="Transparent"
+                    HeightRequest="40"
+                    StrokeShape="RoundRectangle 12"
+                    StrokeThickness="0"
+                    VerticalOptions="Center"
+                    WidthRequest="40">
+                    <Image
+                    x:Name="imgBack"
+                    Aspect="AspectFit"
+                    HeightRequest="20"
+                    Source="icon_back.png"
+                    WidthRequest="20">
+                    </Image>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="BtnBack_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+                <Label
+                    Grid.Column="1"
+                    FontSize="18"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource lblExtraBold}"
+                    Text="All Attendence"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <CollectionView
+                x:Name="lstAttendence"
+                Grid.Row="1"
+                VerticalScrollBarVisibility="Never">
+
+                <CollectionView.Header>
+                    <BoxView BackgroundColor="Transparent" HeightRequest="12" />
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                    <BoxView BackgroundColor="Transparent" HeightRequest="12" />
+                </CollectionView.Footer>
+
+                <!--  Empty State  -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="40,60"
+                        HorizontalOptions="Center"
+                        Spacing="12"
+                        VerticalOptions="Center">
+                        <Border
+                            Background="#E6F0FF"
+                            HeightRequest="72"
+                            HorizontalOptions="Center"
+                            StrokeShape="RoundRectangle 36"
+                            StrokeThickness="0"
+                            WidthRequest="72">
+                            <Image
+                                HeightRequest="36"
+                                HorizontalOptions="Center"
+                                Source="attendance.png"
+                                VerticalOptions="Center"
+                                WidthRequest="36">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="#007BFF" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Border>
+                        <Label
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="No Attendence Found"
+                            TextColor="#1A1A1A" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Grid.Row="1"
+                            Padding="5"
+                            RowDefinitions="Auto">
+                            <Border
+                                BackgroundColor="#F6F6F6"
+                                Stroke="Transparent"
+                                StrokeShape="{RoundRectangle CornerRadius=10}"
+                                VerticalOptions="Start">
+                                <Grid ColumnDefinitions="10,*" ColumnSpacing="10">
+                                    <StackLayout
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        BackgroundColor="#3085FE" />
+
+                                    <Grid
+                                        Grid.Column="1"
+                                        Padding="10"
+                                        RowDefinitions="Auto,Auto,Auto"
+                                        RowSpacing="10">
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="15"
+                                            Style="{StaticResource lblBold}"
+                                            Text="{Binding CheckInTime, StringFormat='{0:MMMM dd, yyyy}'}" />
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            FontSize="15"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource lblRegular}"
+                                            Text="{Binding CheckInTime, StringFormat='{0:dddd}'}" />
+
+                                        <!--#region [ Check-In Time ]-->
+                                        <HorizontalStackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Spacing="8">
+                                            <ImageButton
+                                                Padding="5"
+                                                Aspect="AspectFit"
+                                                BackgroundColor="#EAF3FF"
+                                                HeightRequest="30"
+                                                Source="icon_checkin.png"
+                                                WidthRequest="30" />
+                                            <VerticalStackLayout VerticalOptions="Center">
+                                                <Label
+                                                    FontSize="13"
+                                                    Style="{StaticResource lblRegular}"
+                                                    Text="{Binding CheckInTime, StringFormat='{0:hh:mm tt}'}" />
+                                                <Label
+                                                    FontSize="13"
+                                                    IsVisible="False"
+                                                    Style="{StaticResource lblRegular}"
+                                                    Text="On Time" />
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                        <!--#endregion-->
+
+                                        <!--#region [ Check-Out Time ]-->
+                                        <HorizontalStackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"
+                                            Spacing="8">
+                                            <ImageButton
+                                                Padding="5"
+                                                Aspect="AspectFit"
+                                                BackgroundColor="#EAF3FF"
+                                                HeightRequest="30"
+                                                Source="icon_check_out.png"
+                                                WidthRequest="30" />
+                                            <VerticalStackLayout VerticalOptions="Center">
+                                                <Label
+                                                    FontSize="13"
+                                                    Style="{StaticResource lblRegular}"
+                                                    Text="{Binding CheckOutTime, StringFormat='{0:hh:mm tt}'}" />
+                                                <Label
+                                                    FontSize="13"
+                                                    IsVisible="False"
+                                                    Style="{StaticResource lblRegular}"
+                                                    Text="On Time" />
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                        <!--#endregion-->
+
+                                        <!--#region [ Breack-In Time ]-->
+                                        <HorizontalStackLayout
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Start"
+                                            Spacing="8">
+                                            <ImageButton
+                                                Padding="5"
+                                                Aspect="AspectFit"
+                                                BackgroundColor="#EAF3FF"
+                                                HeightRequest="30"
+                                                Source="icon_cup.png"
+                                                WidthRequest="30" />
+                                            <Label
+                                                FontSize="13"
+                                                Style="{StaticResource lblRegular}"
+                                                Text="{Binding BreakInTime, StringFormat='{0:hh:mm tt}'}"
+                                                VerticalTextAlignment="Center" />
+
+                                        </HorizontalStackLayout>
+                                        <!--#endregion-->
+
+                                        <!--#region [ Brack-Out Time ]-->
+                                        <Grid
+                                            Grid.Row="2"
+                                            Grid.Column="2"
+                                            ColumnDefinitions="30,Auto"
+                                            ColumnSpacing="8"
+                                            HorizontalOptions="End">
+                                            <ImageButton
+                                                Grid.Column="0"
+                                                Padding="5"
+                                                Aspect="AspectFit"
+                                                BackgroundColor="#EAF3FF"
+                                                HeightRequest="30"
+                                                HorizontalOptions="Start"
+                                                Source="icon_break_out.png"
+                                                WidthRequest="30" />
+                                            <Label
+                                                Grid.Column="1"
+                                                FontSize="12"
+                                                Style="{StaticResource lblRegular}"
+                                                Text="{Binding BreakOutTime, StringFormat='{0:hh:mm tt}'}"
+                                                VerticalTextAlignment="Center" />
+                                        </Grid>
+                                        <!--#endregion-->
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<Label
+                x:Name="lblRecoedNotFond"
+                Grid.RowSpan="2"
+                FontSize="18"
+                IsVisible="False"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Style="{StaticResource lblExtraBold}"
+                Text="Record Not Found!" />-->
+        </Grid>
+
+    </RefreshView>
+</ContentPage>

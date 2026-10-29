@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AttendEdgeMobileClient.Views.Account.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls"
+    NavigationPage.HasNavigationBar="False"
+    Style="{StaticResource keyContent}">
+    <Grid>
+        <Grid
+            VerticalOptions="Center"
+            Margin="20"
+            RowDefinitions="20,Auto,Auto,Auto,Auto,Auto,20,Auto,Auto"
+            RowSpacing="20">
+
+            <!--  source="icon_login_logo.png"  -->
+            <!--<Image
+                Grid.Row="1"
+                Aspect="AspectFit"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Source="img_app_icon.png"
+                WidthRequest="100" />-->
+
+            <Image
+                Grid.Row="0"
+                Aspect="AspectFit"
+                HeightRequest="100"
+                HorizontalOptions="Start"
+                Source="attendedge_logo.png"
+                WidthRequest="250" />
+
+            <StackLayout Grid.Row="1">
+                <!--<Label IsVisible="True" Style="{StaticResource lblSemiBold}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="SemiBold"
+                                FontSize="32"
+                                Text="Welcome Back &#10;to "
+                                TextColor="{StaticResource PrimaryBlack}" />
+                            <Span
+                                FontFamily="SemiBold"
+                                FontSize="32"
+                                Text="AttendEdge"
+                                TextColor="{StaticResource Primary}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>-->
+                <!--<Label
+                    FontSize="32"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="AttendEdge"
+                    TextColor="{StaticResource Primary}" />-->
+
+                <Label
+                    FontSize="18"
+                    Style="{StaticResource lblRegular}"
+                    Text="Login your account"
+                    TextColor="{StaticResource PrimaryGray}" />
+            </StackLayout>
+
+            <Border
+                Grid.Row="3"
+                Margin="0,0"
+                Padding="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="{RoundRectangle CornerRadius=8}">
+                <Grid
+                    Margin="0"
+                    Padding="10,0"
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="0">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,8,0,0"
+                        FontSize="16"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Email Address"
+                        TextColor="{StaticResource Primary}" />
+                    <ext:BorderlessEntry
+                        x:Name="TxtEmailAddress"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,-5,5,0"
+                        Focused="TxtEmailAddress_Focused"
+                        FontSize="16"
+                        Keyboard="Email"
+                        HeightRequest="40"
+                        Placeholder="sampleemail16@exa.com"
+                        Style="{StaticResource extEntry}" />
+                    <Image
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        HeightRequest="25"
+                        Source="icon_email.png"
+                        WidthRequest="25" />
+                </Grid>
+            </Border>
+
+            <!--<Label
+            x:Name="lblEmail"
+            Grid.Row="4"
+            Margin="12,-10"
+            BackgroundColor="White"
+            FontSize="15"
+            HorizontalOptions="Start"
+            IsVisible="False"
+            Style="{StaticResource lblSemiBold}"
+            Text="Email Address"
+            TextColor="#3085FE"
+            VerticalOptions="Start" />-->
+
+            <Border
+                Grid.Row="4"
+                Padding="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="{RoundRectangle CornerRadius=8}">
+                <Grid
+                    Padding="10,0"
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="0">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,8,0,0"
+                        FontSize="16"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Password"
+                        TextColor="{StaticResource Primary}" />
+
+                    <ext:BorderlessEntry
+                        x:Name="TxtPassword"
+                        IsPassword="True"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,-5,5,0"
+                        Focused="TxtPassword_Focused"
+                        FontSize="16"
+                        Placeholder="**********"
+                        Style="{StaticResource extEntry}" />
+                    <Image
+                        x:Name="ImgEye"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        HeightRequest="25"
+                        Source="icon_hide.png"
+                        VerticalOptions="Center"
+                        WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgEye_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Border>
+
+            <!--<Label
+            x:Name="lblPassword"
+            Grid.Row="5"
+            Margin="12,-10"
+            BackgroundColor="White"
+            FontSize="15"
+            HorizontalOptions="Start"
+            IsVisible="False"
+            Style="{StaticResource lblSemiBold}"
+            Text="Password"
+            TextColor="#3085FE"
+            VerticalOptions="Start" />-->
+
+            <StackLayout
+                Grid.Row="5"
+                Orientation="Horizontal"
+                Spacing="10">
+                <Image
+                    x:Name="imgCheckBox"
+                    HeightRequest="25"
+                    Source="icon_uncheck.png"
+                    WidthRequest="25" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Remember Me"
+                    TextColor="{StaticResource Primary}"
+                    VerticalOptions="Center" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer
+                        x:Name="stkRememberMe"
+                        NumberOfTapsRequired="1"
+                        Tapped="stkRememberMe_Tapped" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <Button
+                x:Name="BtnLogin"
+                Grid.Row="7"
+                BackgroundColor="{StaticResource Primary}"
+                Clicked="BtnLogin_Clicked"
+                Style="{StaticResource btnPrimary}"
+                Text="Login" />
+
+            <Label
+                Grid.Row="8"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Style="{StaticResource lblRegular}"
+                Text="Forgot Password?"
+                TextColor="{StaticResource Primary}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        x:Name="lblForgotPassword"
+                        NumberOfTapsRequired="1"
+                        Tapped="lblForgotPassword_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+        <ext:CustomLoaderView
+            x:Name="loaderView"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="2"
+            IsVisible="False" />
+    </Grid>
+</ContentPage>
+

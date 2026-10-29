@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AttendEdgeMobileClient.Views.Account.TakeSelfiePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+
+        <!-- Normal Selfie UI -->
+        <Grid
+            x:Name="SelfieContainer"
+            Margin="20,15"
+            RowDefinitions="Auto,Auto,*,Auto,Auto"
+            RowSpacing="20">
+
+            <Image
+                Grid.Row="0"
+                Margin="-5,0,0,0"
+                Aspect="AspectFit"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="icon_back.png"
+                WidthRequest="30">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="ImgBack_Tapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <StackLayout Grid.Row="1" Spacing="8">
+
+                <Label
+                    FontSize="20"
+                    Style="{StaticResource lblBold}"
+                    Text="Take a selfie"
+                    TextColor="Black" />
+
+                <Label
+                    FontSize="15"
+                    Style="{StaticResource lblRegular}"
+                    Text="For KYC verification please take a current Selfie"
+                    TextColor="#AAAAAA" />
+
+            </StackLayout>
+
+            <StackLayout
+                Grid.Row="2"
+                Spacing="15">
+
+                <Border
+                    Stroke="Transparent"
+                    HeightRequest="300"
+                    StrokeShape="{RoundRectangle CornerRadius=15}"
+                    WidthRequest="300">
+
+                    <Image
+                        x:Name="myImage"
+                        Aspect="AspectFill"
+                        HeightRequest="300"
+                        Source="img_selfie.png"
+                        WidthRequest="300" />
+
+                </Border>
+
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource lblRegular}"
+                    Text="Note: Without Verification you can't apply"
+                    TextColor="#AAAAAA" />
+
+                <Label
+                    x:Name="lblLocationInfo"
+                    FontSize="17"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource lblRegular}" />
+
+            </StackLayout>
+
+            <Button
+                x:Name="BtnTakeSelfie"
+                Grid.Row="3"
+                Clicked="BtnTakeSelfie_Clicked"
+                Style="{StaticResource btnPrimary}"
+                Text="Take a Selfie" />
+
+            <Button
+                x:Name="BtnContinue"
+                Grid.Row="4"
+                Clicked="BtnContinue_Clicked"
+                Style="{StaticResource btnPrimary}"
+                Text="Continue" />
+
+        </Grid>
+
+
+        <!-- FULL SCREEN CAMERA -->
+        <Grid
+            x:Name="CameraContainer"
+            IsVisible="False"
+            BackgroundColor="Black">
+
+            <toolkit:CameraView
+                x:Name="cameraView"
+                IsVisible="False"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                CameraFlashMode="Off"/>
+            <!-- Capture Button -->
+            <Border
+                WidthRequest="75"
+                HeightRequest="75"
+                Stroke="White"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 40"
+                BackgroundColor="Transparent"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,0,0,40">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="CaptureCamera_Tapped" />
+                </Border.GestureRecognizers>
+
+                <Ellipse
+                    Margin="5"
+                    Fill="White" />
+
+            </Border>
+
+            <!-- Close Camera -->
+            <Button
+                Text="✕"
+                FontSize="30"
+                TextColor="White"
+                BackgroundColor="Transparent"
+                WidthRequest="60"
+                HeightRequest="60"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Margin="15,10,0,0"
+                Clicked="CloseCamera_Clicked" />
+
+        </Grid>
+
+
+        <ext:CustomLoaderView
+            x:Name="loaderView"
+            IsVisible="False" />
+
+    </Grid>
+
+</ContentPage>

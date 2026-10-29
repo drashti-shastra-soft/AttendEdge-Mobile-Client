@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.MyProfile.DrivingLicenceView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="20">
+        <StackLayout Grid.Row="0" Spacing="8">
+            <Label
+                FontSize="17"
+                HorizontalOptions="Start"
+                Style="{StaticResource lblExtraBold}"
+                Text="Document Validation"
+                VerticalOptions="Center" />
+            <Label
+                FontSize="14"
+                Style="{StaticResource lblRegular}"
+                Text="Please complete the personal verisication by submitting one photo ID"
+                TextColor="{StaticResource Gray400}" />
+        </StackLayout>
+
+        <Border
+            Grid.Row="1"
+            Padding="15"
+            Stroke="{StaticResource Gray200}"
+            StrokeShape="{RoundRectangle CornerRadius=10}"
+            StrokeThickness="1">
+            <Grid RowDefinitions="Auto,Auto" RowSpacing="15">
+                <StackLayout
+                    Grid.Row="0"
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <Image
+                        Aspect="AspectFit"
+                        BackgroundColor="Transparent"
+                        HeightRequest="25"
+                        Source="icon_radio_select.png"
+                        WidthRequest="25" />
+                    <Label
+                        FontSize="17"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="License ID"
+                        TextColor="{StaticResource PrimaryBlack}" />
+                </StackLayout>
+
+                <Border
+                    Grid.Row="1"
+                    Margin="0,0"
+                    Padding="0"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Grid
+                        Margin="0"
+                        Padding="10,0"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="0">
+                        <ext:BorderlessEntry
+                            x:Name="TxtDocument"
+                            Grid.Row="1"
+                            Margin="0,5,5,0"
+                            FontSize="16"
+                            HeightRequest="45"
+                            Style="{StaticResource extEntry}"
+                            Text="1234 5678 9112"
+                            TextColor="{StaticResource PrimaryBlack}" />
+                    </Grid>
+                </Border>
+
+                <Label
+                    x:Name="lblEmail"
+                    Grid.Row="1"
+                    Margin="12,-10"
+                    BackgroundColor="WhiteSmoke"
+                    FontSize="15"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource lblSemiBold}"
+                    Text="Document Number"
+                    TextColor="{StaticResource Gray400}"
+                    VerticalOptions="Start" />
+            </Grid>
+        </Border>
+
+        <StackLayout Grid.Row="2">
+            <Label
+                FontSize="14"
+                Style="{StaticResource lblRegular}"
+                Text="• Must be goverment issued"
+                TextColor="{StaticResource Gray400}" />
+            <Label
+                FontSize="14"
+                Style="{StaticResource lblRegular}"
+                Text="• Must have a picture"
+                TextColor="{StaticResource Gray400}" />
+            <Label
+                FontSize="14"
+                Style="{StaticResource lblRegular}"
+                Text="• Name must match with your app account"
+                TextColor="{StaticResource Gray400}" />
+            <Label
+                FontSize="14"
+                Style="{StaticResource lblRegular}"
+                Text="• Date of birth must match with your app account"
+                TextColor="{StaticResource Gray400}" />
+        </StackLayout>
+
+        <Button
+            Grid.Row="3"
+            FontSize="18"
+            Style="{StaticResource btnPrimary}"
+            Text="Upload File"
+            VerticalOptions="End" />
+    </Grid>
+</ContentView>

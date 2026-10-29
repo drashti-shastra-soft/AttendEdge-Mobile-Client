@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage
+    x:Class="AttendEdgeMobileClient.PopupPages.FilterPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:conv="clr-namespace:AttendEdgeMobileClient.Converter"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls"
+    CloseWhenBackgroundIsClicked="False"
+    BackgroundColor="#80000000">
+
+    <Grid
+        HeightRequest="680"
+        VerticalOptions="End"
+        HorizontalOptions="Fill">
+
+        <!-- YOUR EXISTING FILTER BORDER -->
+        <Border
+            x:Name="bdrFilter"
+            Margin="0"
+            Padding="20"
+            BackgroundColor="{StaticResource White}"
+            HorizontalOptions="Fill"
+            VerticalOptions="End">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30,30,0,0" />
+            </Border.StrokeShape>
+
+            <ScrollView
+                Orientation="Vertical"
+                VerticalScrollBarVisibility="Never">
+
+                <Grid
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                    RowSpacing="15">
+
+                    <!-- HEADER -->
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Style="{StaticResource lblBold}"
+                            Text="Filter" />
+
+                        <Image
+                            x:Name="ImgBtnCancle"
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            HorizontalOptions="EndAndExpand"
+                            Source="icon_close.png"
+                            WidthRequest="30">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    NumberOfTapsRequired="1"
+                                    Tapped="BtnClose_Tapped" />
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                    </StackLayout>
+
+
+                    <!-- DATE -->
+                    <VerticalStackLayout
+                        Grid.Row="1"
+                        Spacing="8">
+
+                        <Label
+                            FontSize="15"
+                            Style="{StaticResource lblBold}"
+                            Text="Date" />
+
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            ColumnSpacing="10">
+
+                            <!-- START DATE -->
+                            <Border
+                                Grid.Column="0">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+
+                                <Grid
+                                    Padding="5,0,10,0"
+                                    ColumnDefinitions="*,Auto"
+                                    VerticalOptions="Center">
+
+                                    <ext:BorderlessDatePicker
+                                        x:Name="dtpckStart"
+                                        Grid.ColumnSpan="2"
+                                        Margin="5,0,5,0"
+                                        FontSize="14"
+                                        Format="MMM dd, yyyy"
+                                        HeightRequest="40"
+                                         DateSelected="dtpckStart_DateSelected" 
+                                        VerticalOptions="Center" />
+
+                                    <Image
+                                        Grid.Column="1"
+                                        Aspect="AspectFit"
+                                        HeightRequest="20"
+                                        Source="icon_calander.png"
+                                        InputTransparent="True"
+                                        WidthRequest="20" />
+
+                                </Grid>
+                            </Border>
+                            <!-- END DATE -->
+                            <Border
+                                Grid.Column="1">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+
+                                <Grid
+                                     x:Name="EndDateContainer"
+                                    Padding="5,0,10,0"
+                                    ColumnDefinitions="*,Auto"
+                                    VerticalOptions="Center">
+
+                                    <ext:BorderlessDatePicker
+                                        x:Name="dtpckEnd"
+                                        Grid.ColumnSpan="2"
+                                        Margin="5,0,5,0"
+                                        FontSize="14"
+                                        Format="MMM dd, yyyy"
+                                        HeightRequest="40"
+                                        DateSelected="dtpckEnd_DateSelected"
+                                        VerticalOptions="Center" />
+
+                                    <Image
+                                        Grid.Column="1"
+                                        Aspect="AspectFit"
+                                        HeightRequest="20"
+                                        Source="icon_calander.png"
+                                        InputTransparent="True"
+                                        WidthRequest="20" />
+
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+
+                    <!-- STATUS -->
+                    <StackLayout
+                        Grid.Row="2"
+                        Spacing="8">
+
+                        <Label
+                            FontSize="15"
+                            Style="{StaticResource lblExtraBold}"
+                            Text="Status" />
+
+                        <HorizontalStackLayout Spacing="8">
+
+                            <Image
+                                x:Name="ImgApprove"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="Approve"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Approve" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+
+                        </HorizontalStackLayout>
+
+
+                        <HorizontalStackLayout Spacing="8">
+
+                            <Image
+                                x:Name="ImgReject"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="Reject"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Reject" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+
+
+                    <!-- REQUEST DAY -->
+                    <StackLayout
+                        Grid.Row="3"
+                        Spacing="8">
+
+                        <Label
+                            FontSize="15"
+                            Style="{StaticResource lblExtraBold}"
+                            Text="Request Day" />
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgOneDay"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="OneDay"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="0-1 Day" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgTwoDay"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="TwoDay"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="1-2 Day" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgThreeDay"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+                            <Label
+                                ClassId="ThreeDay"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="2 Day to more" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+
+
+                    <!-- REASON -->
+                    <StackLayout
+                        Grid.Row="4"
+                        Spacing="8">
+
+                        <Label
+                            FontSize="15"
+                            Style="{StaticResource lblExtraBold}"
+                            Text="Reason" />
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgCasualLeave"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="CasualLeave"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Casual Leave" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgSickLeave"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="SickLeave"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Sick Leave" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgPaidLeave"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+                            <Label
+                                ClassId="PaidLeave"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Paid Leave" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+
+
+                    <!-- REQUEST TYPE -->
+                    <StackLayout
+                        Grid.Row="5"
+                        Spacing="8">
+
+                        <Label
+                            FontSize="15"
+                            Style="{StaticResource lblExtraBold}"
+                            Text="Request Type" />
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgHalfDay"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="HalfDay"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Half Day" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Image
+                                x:Name="ImgFullDay"
+                                Source="icon_uncheck.png"
+                                Style="{StaticResource ImgSmall}" />
+
+                            <Label
+                                ClassId="FullDay"
+                                FontSize="14"
+                                Style="{StaticResource lblRegular}"
+                                Text="Full Day" />
+
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CheckBox_tapped" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+
+
+                    <!-- BUTTONS -->
+                    <Grid
+                        Padding="0,20"
+                        Grid.Row="6"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="10">
+
+                        <Button
+                            Grid.Column="0"
+                            ClassId="Reset"
+                            Clicked="SetReset_filterClciked"
+                            FontSize="15"
+                            HeightRequest="50"
+                            Style="{StaticResource btnPrimary}"
+                            Text="Reset"
+                            TextColor="{StaticResource White}" />
+
+                        <Button
+                            Grid.Column="1"
+                            ClassId="Apply"
+                            Clicked="SetReset_filterClciked"
+                            FontSize="15"
+                            HeightRequest="50"
+                            Style="{StaticResource btnPrimary}"
+                            Text="Apply"
+                            TextColor="{StaticResource White}" />
+
+                    </Grid>
+
+                </Grid>
+
+            </ScrollView>
+
+        </Border>
+
+    </Grid>
+
+</mopups:PopupPage>

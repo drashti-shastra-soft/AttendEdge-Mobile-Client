@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.Tapped.MyProfileView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls">
+    <Grid
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="15">
+        <Label
+            Grid.Row="0"
+            FontSize="18"
+            HorizontalTextAlignment="Center"
+            Style="{StaticResource lblExtraBold}"
+            Text="My Profile"
+            VerticalOptions="Center" />
+
+        <Border
+            Grid.Row="1"
+            BackgroundColor="{StaticResource Gray100}"
+            HeightRequest="50"
+            StrokeShape="{RoundRectangle CornerRadius=10}"
+            StrokeThickness="1">
+            <Grid ColumnDefinitions="*,*">
+                <Button
+                    x:Name="btnPersonal"
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    ClassId="Personal"
+                    Clicked="Selection_clicked"
+                    FontFamily="ExtraBold"
+                    FontSize="15"
+                    Text="Personal" />
+                <Button
+                    x:Name="btnDocument"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    ClassId="Document"
+                    Clicked="Selection_clicked"
+                    FontFamily="ExtraBold"
+                    FontSize="15"
+                    Text="Documents"
+                    TextColor="{StaticResource PrimaryBlack}" />
+
+            </Grid>
+        </Border>
+
+        <!--<ScrollView
+            Grid.Row="2"
+            IsVisible="False"
+            VerticalScrollBarVisibility="Never">
+            <Grid x:Name="grdViewBind" />
+        </ScrollView>-->
+
+
+        <!--#region Persomal-->
+        <Grid
+            x:Name="grdPersonal"
+            Grid.Row="2"
+            Margin="0,0,0,0"
+            RowDefinitions="Auto,Auto,Auto,Auto"
+            RowSpacing="20">
+            <Border
+                Grid.Row="0"
+                Margin="0,0"
+                Padding="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="{RoundRectangle CornerRadius=8}">
+                <Grid
+                    Margin="0"
+                    Padding="10,0"
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="0">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,8,0,0"
+                        FontSize="14"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Full Name"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        x:Name="lblName"
+                        Grid.Row="1"
+                        FontSize="16"
+                        HeightRequest="35"
+                        Style="{StaticResource lblRegular}"
+                        TextColor="{StaticResource PrimaryBlack}" />
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Row="1"
+                Margin="0,0"
+                Padding="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="{RoundRectangle CornerRadius=8}">
+                <Grid
+                    Margin="0"
+                    Padding="10,0"
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="0">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,8,0,0"
+                        FontSize="14"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Email Address"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        x:Name="lblEmail"
+                        Grid.Row="1"
+                        FontSize="16"
+                        HeightRequest="35"
+                        Style="{StaticResource lblRegular}"
+                        TextColor="{StaticResource PrimaryBlack}" />
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Row="2"
+                Margin="0,0"
+                Padding="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="{RoundRectangle CornerRadius=8}">
+                <Grid
+                    Margin="0"
+                    Padding="10,0"
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="0">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,8,0,0"
+                        FontSize="14"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Phone Number"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        x:Name="lblPhone"
+                        Grid.Row="1"
+                        FontSize="16"
+                        HeightRequest="35"
+                        Style="{StaticResource lblRegular}"
+                        TextColor="{StaticResource PrimaryBlack}" />
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Row="3"
+                Margin="0,0"
+                Padding="0"
+                Stroke="{StaticResource Primary}"
+                StrokeShape="{RoundRectangle CornerRadius=8}">
+                <Grid
+                    Margin="0"
+                    Padding="10,0"
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="0">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,8,0,0"
+                        FontSize="14"
+                        Style="{StaticResource lblSemiBold}"
+                        Text="Address"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        x:Name="lblAddress"
+                        Grid.Row="1"
+                        FontSize="16"
+                        HeightRequest="35"
+                        Style="{StaticResource lblRegular}"
+                        TextColor="{StaticResource PrimaryBlack}" />
+                </Grid>
+            </Border>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region [Document]-->
+        <Grid
+            x:Name="grdDocument"
+            IsVisible="False"
+            Grid.Row="2"
+            RowDefinitions="*,Auto"
+            RowSpacing="20">
+            <CollectionView x:Name="clsUserDocuments" Grid.Row="0">
+                <!--  Empty State  -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="40,60"
+                        HorizontalOptions="Center"
+                        Spacing="12"
+                        VerticalOptions="Center">
+                        <Border
+                            Background="#E6F0FF"
+                            HeightRequest="72"
+                            HorizontalOptions="Center"
+                            StrokeShape="RoundRectangle 36"
+                            StrokeThickness="0"
+                            WidthRequest="72">
+                            <Image
+                                HeightRequest="36"
+                                HorizontalOptions="Center"
+                                Source="document.png"
+                                VerticalOptions="Center"
+                                WidthRequest="36">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="#007BFF" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Border>
+
+                        <Label
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="No Document Found"
+                TextColor="#1A1A1A" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="10"
+                        Orientation="Vertical"
+                        Span="3"
+                        VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Grid
+                                ColumnSpacing="10"
+                                HeightRequest="100"
+                                VerticalOptions="StartAndExpand"
+                                WidthRequest="100">
+                                <Border
+                                    Background="White"
+                                    Stroke="#EFEFEF"
+                                    StrokeShape="RoundRectangle 16">
+                                    <Border.Shadow>
+                                        <Shadow
+                                            Brush="Black"
+                                            Opacity="0.05"
+                                            Radius="8"
+                                            Offset="0,2" />
+                                    </Border.Shadow>
+                                    <Image 
+                                        Margin="10"
+                                        Aspect="AspectFit" 
+                                        Source="{Binding Thumbnail}" />
+                                </Border>
+                            </Grid>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Image
+                x:Name="btnPlush"
+                Grid.Row="0"
+                HeightRequest="60"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="False"
+                Source="icon_plus.png"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="60">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="UploadDocument_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Border
+                x:Name="bdrSelectphoto"
+                Grid.Row="0"
+                Margin="0,0,55,40"
+                Padding="10"
+                BackgroundColor="{StaticResource White}"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="False"
+                StrokeShape="{RoundRectangle CornerRadius=10}"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="150">
+                <StackLayout Spacing="5">
+                    <Label
+                        ClassId="Document"
+                        Style="{StaticResource lblExtraBold}"
+                        Text="Select file"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectDocument_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView HeightRequest="2" Color="Black" />
+                    <Label
+                        ClassId="Photo"
+                        Style="{StaticResource lblExtraBold}"
+                        Text="Choose photo"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectDocument_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Border>
+        </Grid>
+
+        <!--<Label
+            x:Name="lblRecordNotFound"
+            Grid.Row="2"
+            FontSize="18"
+            HorizontalOptions="Fill"
+            HorizontalTextAlignment="Center"
+            IsVisible="false"
+            Style="{StaticResource lblBold}"
+            Text="Record not found.."
+            VerticalTextAlignment="Center" />-->
+        <!--#endregion-->
+
+        <ext:CustomLoaderView
+            x:Name="loaderView"
+            Grid.RowSpan="3"
+            IsVisible="False" />
+    </Grid>
+</ContentView>

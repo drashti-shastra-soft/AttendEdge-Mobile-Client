@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="AttendEdgeMobileClient.Views.Tapped.LeaveView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:ext="clr-namespace:AttendEdgeMobileClient.CustomeControls">
+    <Grid RowDefinitions="Auto,*" RowSpacing="15">
+        <Label
+            Grid.Row="0"
+            FontSize="18"
+            HorizontalOptions="CenterAndExpand"
+            HorizontalTextAlignment="Center"
+            Style="{StaticResource lblExtraBold}"
+            Text="Apply Leave"
+            TextColor="{StaticResource PrimaryBlack}" />
+
+        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Spacing="15">
+                <Border
+                    Margin="0,0"
+                    Padding="0"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Grid
+                        Margin="0"
+                        Padding="10,0"
+                        ColumnDefinitions="*,Auto"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="0">
+                        <Label
+                            Grid.Row="0"
+                            Margin="0,5,0,0"
+                            FontSize="16"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="From Date"
+                            TextColor="{StaticResource Primary}" />
+                        <ext:BorderlessDatePicker
+                            x:Name="dtpckStart"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,-5,5,0"
+                            FontSize="16"
+                            Format="MMM dd yyyy"
+                            HeightRequest="45"
+                            MinimumDate="{x:Static sys:DateTime.Today}"
+                            Style="{StaticResource extEntry}" />
+                        <Image
+                            x:Name="ImgCalendarStart"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            HeightRequest="25"
+                            Source="icon_calander.png"
+                            VerticalOptions="Center"
+                            WidthRequest="25">
+                        </Image>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgCalendarStart_Tapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Border>
+
+                <Border
+                    Margin="0,0"
+                    Padding="0"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Grid
+                        Margin="0"
+                        Padding="10,0"
+                        ColumnDefinitions="*,Auto"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="0">
+                        <Label
+                            Grid.Row="0"
+                            Margin="0,5,0,0"
+                            FontSize="16"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="To Date"
+                            TextColor="{StaticResource Primary}" />
+                        <ext:BorderlessDatePicker
+                            x:Name="dtpckEnd"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,-5,5,0"
+                            FontSize="16"
+                            Format="MMM dd yyyy"
+                            HeightRequest="45"
+                            MinimumDate="{x:Static sys:DateTime.Today}"
+                            Style="{StaticResource extEntry}" />
+                        <Image
+                            x:Name="ImgCalendarEnd"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            BackgroundColor="Transparent"
+                            HeightRequest="25"
+                            Source="icon_calander.png"
+                            VerticalOptions="Center"
+                            WidthRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ImgCalendarEnd_Tapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Border>
+                
+                <Border
+                    Padding="5"
+                    HeightRequest="50"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Grid ColumnDefinitions="*,*">
+                        <Button
+                            x:Name="btnFullday"
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            ClassId="FullDay"
+                            Clicked="LeaveType_Clicked"
+                            FontFamily="Bold"
+                            FontSize="14"
+                            Text="Full Day" />
+                        <Button
+                            x:Name="btnHalfDay"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            ClassId="HalfDay"
+                            Clicked="LeaveType_Clicked"
+                            FontFamily="Bold"
+                            FontSize="14"
+                            Text="Half Day"
+                            TextColor="{StaticResource PrimaryBlack}" />
+
+                    </Grid>
+                </Border>
+
+                <Border
+                    x:Name="bdrSubLeaveType"
+                    Padding="5"
+                    HeightRequest="50"
+                    IsVisible="Collapse"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Grid ColumnDefinitions="*,*">
+                        <Button
+                            x:Name="btnFirstHalf"
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource Primary}"
+                            ClassId="First"
+                            Clicked="BtnSubLeaveType_Cliked"
+                            FontFamily="Bold"
+                            FontSize="14"
+                            Text="First Half" />
+                        <Button
+                            x:Name="btnSecondHalf"
+                            Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            ClassId="Second"
+                            Clicked="BtnSubLeaveType_Cliked"
+                            FontFamily="Bold"
+                            FontSize="14"
+                            Text="Second Half"
+                            TextColor="{StaticResource PrimaryBlack}" />
+                    </Grid>
+                </Border>
+
+                <Border
+                    Margin="0,0"
+                    Padding="0"
+                    Stroke="{StaticResource Primary}"
+                    StrokeShape="{RoundRectangle CornerRadius=8}">
+                    <Grid
+                        Margin="0"
+                        Padding="10,0"
+                        ColumnDefinitions="*,Auto"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="0">
+                        <Label
+                            Grid.Row="0"
+                            Margin="0,8,0,0"
+                            FontSize="16"
+                            Style="{StaticResource lblSemiBold}"
+                            Text="Reason of Leave"
+                            TextColor="{StaticResource Primary}" />
+                        <ext:BorderlessEditor
+                            x:Name="txtLeaveReason"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,-5,5,0"
+                            FontSize="16"
+                            MinimumHeightRequest="120"
+                            TextColor="{StaticResource PrimaryBlack}" />
+                    </Grid>
+                </Border>
+
+                <Button
+                    x:Name="BtnApplyLeave"
+                    Clicked="BtnApplyLeave_Clicked"
+                    Style="{StaticResource btnPrimary}"
+                    Text="Apply Leave" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ext:CustomLoaderView
+            x:Name="loaderView"
+            Grid.RowSpan="2"
+            IsVisible="False" />
+    </Grid>
+</ContentView>
